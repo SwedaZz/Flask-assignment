@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<legend class="border-bottom mb-4">Library</legend>
+<table class="table" style="text-align:center">
+    <thead>
+    <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Author</th>
+        <th scope="col">Available pcs.</th>
+        <th scope="col">Express borrow</th>
+    </tr>
+    </thead>
+    {% for row in data %}
+    {% if row.stock > 0%}
+    <tbody>
+    <tr class="table-success">
+
+        <td>{{ row.title }}</td>
+        <td>{{row.author.name}}</td>
+        <td>{{row.stock}}</td>
+        <td><a style="text-decoration:none; color:blue; font-size:1rem " href="/borrow_book/{{row.id}}">Borrow</a></td>
+    </tr>
+    {% endif %}
+    {% endfor %}
+    </tbody>
+</table>
+{% if message %}
+<h1>{{message}}</h1>
+{% endif %}
+{% endblock %}

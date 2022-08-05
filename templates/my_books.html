@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+<legend class="border-bottom mb-4">My Books</legend>
+<table class="table" style="text-align:center">
+    <thead>
+    <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Author</th>
+        <th scope="col">Return now</th>
+    </tr>
+    </thead>
+
+    {% for row in data %}
+    {% if row.id == current_user.id %}
+    {% for x in row.books %}
+    <tbody>
+
+    <tr class="table-success">
+
+        <td>{{x.title}}</td>
+        <td>{{x.author.name}}</td>
+
+        <td><a style="text-decoration:none; color:red; font-size:1rem " href="/return_book/{{x.id}}">Return</a></td>
+    </tr>
+    {% endfor %}
+    {% endif %}
+    {% endfor %}
+    </tbody>
+
+</table>
+{% endblock %}
